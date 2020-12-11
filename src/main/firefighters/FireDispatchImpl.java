@@ -23,19 +23,19 @@ public class FireDispatchImpl implements FireDispatch {
   private FireStation fireStationLoc;
   int fireFighterIndex;
 
-// expand FireDispatchImple to take in the firestation CityNode so we can initilize fireFights to that location
+// expand FireDispatchImpl to take in the fire-station CityNode so we can init fireFights to that location
   public FireDispatchImpl(City city, FireStation fireStation) {
     this.cityGrid = city;
     this.fireStationLoc = fireStation;
     this.fireFighterIndex = 0;
-    this.fireFighters = new ArrayList<Firefighter>();
+    this.fireFighters = new ArrayList<>();
 
   }
 
   @Override
   public void setFirefighters(int numFirefighters) {
-    // Initlize our ArrayList of fireFighters to size numFireFighters
-    this.fireFighters = new ArrayList<Firefighter>(numFirefighters);
+    // Init our ArrayList of fireFighters to size numFireFighters
+    this.fireFighters = new ArrayList<>(numFirefighters);
 
     while(numFirefighters != 0) {
       // Push into our ArrayList, every fireFighter will be located at our fireStation at first
@@ -64,22 +64,19 @@ public class FireDispatchImpl implements FireDispatch {
       Building currBuilding = this.cityGrid.getBuilding(location);
 
       // to handle our fireProof Exceptions, if a building already burning or is a firestation, do not extinguish fire.
-      // If a building is burning, we'll want to dispatch firefighter and calculate distance and update the X,Y cordinates of Firefighter
+      // If a building is burning, we'll want to dispatch firefighter and calculate distance and update the X,Y points of Firefighter
 
-      if(currBuilding.isBurning() && !currBuilding.isFireproof()){
+      if(currBuilding.isBurning() && !currBuilding.isFireproof()) {
         currBuilding.extinguishFire();
         Firefighter currFireFighter = this.fireFighters.get(this.fireFighterIndex);
         int cityX = location.getX();
         int cityY = location.getY();
 
-        // we'll pass the X,Y cordinates of our burning building to firefighter so we can calulcate distance they have to travel
+        // we'll pass the X,Y points of our burning building to firefighter so we can calc. distance they have to travel
         currFireFighter.updateDistanceTraveled(cityX, cityY);
 
         this.fireFighterIndex++;
 
-      }else {
-        // we can not extingush fire, skip this cityNode as it must be a fireProof or isn't currently burning
-        continue;
       }
     }
   }
