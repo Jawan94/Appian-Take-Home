@@ -5,6 +5,7 @@ import main.api.Firefighter;
 //import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 public class FirefighterImpl implements Firefighter {
+  
   int x;
   int y;
   int distance;
@@ -18,13 +19,11 @@ public class FirefighterImpl implements Firefighter {
   @Override
   public CityNode getLocation() {
     return new CityNode(this.x, this.y);
-
   }
 
   @Override
   public int distanceTraveled() {
     return this.distance;
-
   }
 
   @Override

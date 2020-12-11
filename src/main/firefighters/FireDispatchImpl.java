@@ -29,7 +29,6 @@ public class FireDispatchImpl implements FireDispatch {
     this.fireStationLoc = fireStation;
     this.fireFighterIndex = 0;
     this.fireFighters = new ArrayList<>();
-
   }
 
   @Override
@@ -52,9 +51,10 @@ public class FireDispatchImpl implements FireDispatch {
 
   @Override
   public void dispatchFirefighers(CityNode... burningBuildings) throws NoFireFoundException {
+
     // Idea is to loop through our burning CityNodes and send a Firefighter out to it.
     // If we've exhausted all of our current firefighters, we will loop through our ArrayList again,
-    // starting with the 0th index fireFighter in our ArrayList
+    // starting with the 0th index fireFighter
 
     for (CityNode location : burningBuildings) {
       if(this.fireFighterIndex >= this.fireFighters.size()) {
@@ -63,7 +63,7 @@ public class FireDispatchImpl implements FireDispatch {
 
       Building currBuilding = this.cityGrid.getBuilding(location);
 
-      // to handle our fireProof Exceptions, if a building already burning or is a firestation, do not extinguish fire.
+      // to handle our fireProof Exceptions, if a building is already burning or is a firestation, do not extinguish fire.
       // If a building is burning, we'll want to dispatch firefighter and calculate distance and update the X,Y points of Firefighter
 
       if(currBuilding.isBurning() && !currBuilding.isFireproof()) {
@@ -72,7 +72,8 @@ public class FireDispatchImpl implements FireDispatch {
         int cityX = location.getX();
         int cityY = location.getY();
 
-        // we'll pass the X,Y points of our burning building to firefighter so we can calc. distance they have to travel
+        // we'll pass the X,Y points of our burning building to firefighter so we can calc. distance they have to travel + update their
+        // current location if we need to dispatch again
         currFireFighter.updateDistanceTraveled(cityX, cityY);
 
         this.fireFighterIndex++;
