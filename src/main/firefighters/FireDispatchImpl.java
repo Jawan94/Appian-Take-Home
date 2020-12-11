@@ -12,7 +12,6 @@ import main.api.Building;
 
 
 import java.util.ArrayList;
-//import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 
 
@@ -21,7 +20,7 @@ public class FireDispatchImpl implements FireDispatch {
   private City cityGrid;
   private List<Firefighter> fireFighters;
   private FireStation fireStationLoc;
-  int fireFighterIndex;
+  private int fireFighterIndex;
 
 // expand FireDispatchImpl to take in the fire-station CityNode so we can init fireFights to that location
   public FireDispatchImpl(City city, FireStation fireStation) {

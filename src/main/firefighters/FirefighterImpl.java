@@ -2,13 +2,12 @@ package main.firefighters;
 
 import main.api.CityNode;
 import main.api.Firefighter;
-//import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 public class FirefighterImpl implements Firefighter {
-  
-  int x;
-  int y;
-  int distance;
+
+  private int x;
+  private int y;
+  private int distance;
 
   public FirefighterImpl(int x, int y) {
     this.x = x;
